@@ -13,3 +13,10 @@ patches:
       - op: replace
         path: /spec/parameters/tenantId
         value: "2f695754-b89d-4b9b-b341-984f80794ebc"
+  - target:
+      kind: ObjectStore
+      name: customer1-objectstore
+    patch: |-
+      - op: replace
+        path: /spec/configuration/destinationPath
+        value: "https://jupiterbackupsstaging.blob.core.windows.net/customer1"
