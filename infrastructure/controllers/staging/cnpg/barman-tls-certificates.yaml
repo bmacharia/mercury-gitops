@@ -44,6 +44,7 @@ spec:
   commonName: barman-cloud-server
   dnsNames:
     - barman-cloud-server
+    - barman-cloud
     - localhost
   usages:
     - server auth
