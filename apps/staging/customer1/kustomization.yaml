@@ -13,6 +13,9 @@ patches:
       - op: replace
         path: /spec/parameters/tenantId
         value: "2f695754-b89d-4b9b-b341-984f80794ebc"
+      - op: replace
+        path: /spec/parameters/keyvaultName
+        value: "kv-mercury-stg-yvi3"
   - target:
       kind: ObjectStore
       name: customer1-objectstore
