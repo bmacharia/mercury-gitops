@@ -10,3 +10,6 @@ data:
   DB_POSTGRESDB_HOST: "customer1-db-rw.customer1.svc.cluster.local"
   DB_POSTGRESDB_PORT: "5432"
   DB_POSTGRESDB_DATABASE: "app"
+  N8N_HOST: "customer1.mercury.airmanbabu.net"
+  WEBHOOK_URL: "https://customer1.mercury.airmanbabu.net/"
+  N8N_EDITOR_BASE_URL: "https://customer1.mercury.airmanbabu.net/"
