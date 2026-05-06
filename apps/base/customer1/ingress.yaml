@@ -1,25 +1,29 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: cert-manager.io/v1
+kind: Certificate
 metadata:
-  name: customer1-ingress
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-    traefik.ingress.kubernetes.io/router.tls: "true"
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  name: customer1-tls
+  namespace: customer1
 spec:
-  ingressClassName: traefik
+  secretName: customer1-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - customer1.mercury.airmanbabu.net
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: customer1-n8n
+  namespace: customer1
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`customer1.mercury.airmanbabu.net`)
+      kind: Rule
+      services:
+        - name: customer1-n8n
+          port: 3008
   tls:
-    - hosts:
-        - customer1.mercury.airmanbabu.net
-      secretName: customer1-tls
-  rules:
-    - host: customer1.mercury.airmanbabu.net
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: customer1-n8n
-                port:
-                  number: 3008
+    secretName: customer1-tls
